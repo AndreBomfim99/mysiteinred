@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Site in Red</title>
+    <link rel="stylesheet" href="../../../src/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <style>
+    .linha-com-intervalo {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* espaço entre texto e linha */
+      margin-top: 10px;
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>My Site in Red</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">About me</a></li>
+                    <li><a href="#">Articles</a></li>
+                    <li><a href="#">Texts</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="search-bar">
+        <div class="container">
+            <form action="#" method="get">
+                <input type="text" placeholder="Buscar artigos...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <main class="main-content container">
+        <div class="content">
+            <article class="main-article">
+                <h2>Intervals</h2>
+                <p class="article-meta">Published on June 12, 2023</p>
+                <!-- <img src="" alt="Artigo Principal" class="article-image"> -->
+                <div class="article-content">
+                    
+                    <h3 style="font-weight: normal;">Given the real numbers <strong>a</strong> and <strong>b</strong> with <strong>a < b</strong>, we define:</h3><br>
+                    
+                    <h3>a) Open interval with endpoints <strong>a</strong> and <strong>b</strong> is the set</h3>
+
+                    <h3><div>  \[ ]a, b[ = \{ x \in \mathbb{R} \mid a < x < b \} \]</div></h3>
+
+                    <p>This expression means it is the set all real numbers between <strong>a</strong> and <strong>b</strong> excluding the endpoints a and b themselves. For example: </p>
+
+                    <div>  \[ ]1, 4[ = \{ x \in \mathbb{R} \mid 1 < x < 4 \} \]</div>
+
+                    <p>The example shows an interval whose set includes {1.0000000......n, 1.25, &radic;5, &pi;, 3.999999......n}, but does not include 1 and does not include 4. (The n in the set indicates that it extends to the nth decimal place)</p>
+
+                    <h3>b) Closed Interval with endpoints <strong>a</strong> and <strong>b</strong> is the set</h3>
+
+                    <h3><div>  \[ [a, b] = \{ x \in \mathbb{R} \mid a \leq x \leq b \} \]</div></h3>
+
+                    <p>This expression means it is the set that includes all real numbers between <strong>a</strong> and <strong>b</strong> including the endpoints a and b themselves. For example:</p>
+
+                    <div>  \[ [2, 5] = \{ x \in \mathbb{R} \mid 2 \leq x \leq 5 \} \]</div>
+
+                    <p>The example shows an intrval whose set includes { 2, &pi;, 3, 4.999.........n, 5}, including 2 and including 5.</p>
+
+                    <h3>c) Left-closed (or right open) interval with endpoints <strong>a</strong> and <strong>b</strong> is the set:</h3>
+
+                    <h3><div>  \[ [a, b[ = \{ x \in \mathbb{R} \mid a \leq x < b \} \]</div></h3>
+
+                    <p>This expressiona means it is the set that includes <strong>a</strong> but not <strong>b</strong>. for example: </p>
+
+                    <div>  \[ [1, 4[ = \{ x \in \mathbb{R} \mid 1 \leq x < 4 \} \]</div>
+
+                    <p>The example shows an interval whose set includes {1, 2.5, &pi;, 3.9999....n}, including 1 but not including 4.</p>
+                     
+                    <h3>d) Right-closed (or left-open) interval with endpoints <strong>a</strong> and <strong>b</strong> is the set: </h3>
+                    
+                    <div>  \[ ]a, b] = \{ x \in \mathbb{R} \mid a < x \leq b \} \]</div>
+
+                    <p>This expression means it is the set that does not include <strong>a</strong> but include <strong>b</strong>. For example: </p>
+
+                    <div>  \[ ]2, 5] = \{ x \in \mathbb{R} \mid 2 < x \leq 5 \} \]</div>
+
+                    <p>The example shows an interval whose set includes {2.0000.....n, 2.5, &pi;, 3.9999....n, 4, 5} excluding 2 but including 5.</p>
+
+                    <p>Within this context, <strong>a</strong> is referred to as the <strong>lower endpoint</strong> of interval, and <strong>b</strong> as the <strong>upper endpoint</strong> of interval. </p>
+
+                    <p>We also consider "infinite intervals" defined as follows: </p>
+
+                    <h3>e) Left-infinite type: </h3>
+                    
+                    <div>  \[ ]-\infty, a[ = \{ x \in \mathbb{R} \mid x < a \} \]</div>
+
+                    <p>The symbol \( -\infty \) indicates that there is no lower bound, meaning it extends infinitely to the left. It is always open on the infinite side, as infinity is never included, in this context it is just a symbol of unlimited growth. Example:</p>
+
+                    <div>  \[ ]-\infty, 5[ = \{ x \in \mathbb{R} \mid x < 5 \} \]</div>
+
+                     <p>The set { \( -\infty \), -10, -0.5, &pi;, 4.999999........n}, includes all numbers less than 5 up to infinity, but not 5 itself.</p>
+
+                    <p>Observação: Em algumas literaturas é escrito como: </p>
+
+                    <div> \[ (-\infty, a[ \]</div>
+
+                    <div style="text-align: center;"> ou </div>
+
+                    <div>\[ -\infty \longrightarrow a \] </div>
+
+                    <p> I won’t show how it is written in all types of literature, as it would confuse more than help.</p>
+
+                    <h3>f) Left-infinite type with a included: </h3>
+                    
+                    <div>  \[ ]-\infty, a] = \{ x \in \mathbb{R} \mid x \leq a \} \]</div>
+
+                    <p>It goes from negative infinity up to a, including it. Example: </p>
+
+                    <div>  \[ ]-\infty, 5] = \{ x \in \mathbb{R} \mid x \leq 5 \} \]</div>
+
+                    <p>The set { \( -\infty \), -100, 0, 3, 4.99999.....n, 5} goes from negative infinity up to 5, including 5.</p>
+
+                    <h3>g) Right-infinite type: </h3>
+                    
+                    <div>  \[ ]a, +\infty[ = \{ x \in \mathbb{R} \mid x > a \} \]</div>
+
+                    <p>This is the set of all real numbers greater than a, meaning a is not included in the set. Example:</p>
+
+                    <div>  \[ ]3, +\infty[ = \{ x \in \mathbb{R} \mid x > 3 \} \]</div>
+
+                    <p>The set includes {3.0000......n, 4, 500, 1000000, \( +\infty \)}, but not including 3.</p>
+
+                    <h3>h) Right-infinite with a included: </h3>
+                    
+                    <div>  \[ [a, +\infty[ = \{ x \in \mathbb{R} \mid x \geq a \} \]</div>
+
+                    <p>This represents the set of all real numbers greater than or equal to <strong>a</strong>. Example:</p>
+
+                    <div>  \[ [3, +\infty[ = \{ x \in \mathbb{R} \mid x \geq 2 \} \]</div>
+
+                    <p>The example shows a set that includes {3, 3.9999.....n, , 4, 500, 1000000, \( +\infty \)}, including 3.</p>
+
+                    <h3>i) Open interval of Real numbers: </h3>
+                    
+                    <div>  \[ ]-\infty, +\infty[ =  \mathbb{R} \]</div>
+
+                    <p>This represents all real numbers, ranging from negative infinity to positive infinity, without including them.</p>
+                
+                <h2>Graphical Representation</h2>
+
+                    <div class="linha-com-intervalo">
+                        <div><h3 style="font-size: 24px;">\[ ]a, b[ \]</h3></div>
+                            <svg width="700" height="60">
+                                <line x1="10" y1="30" x2="600" y2="30" stroke="black" stroke-width="1" />
+                                <line x1="190" y1="30" x2="410" y2="30" stroke="red" stroke-width="3" />    
+                                <circle cx="190" cy="30" r="5" fill="white" stroke="black" stroke-width="1"/>
+                                <circle cx="410" cy="30" r="5" fill="white" stroke="black" stroke-width="1"/>
+                                <text x="190" y="20" font-size="18">a</text>
+                                <text x="410" y="20" font-size="18">b</text>
+                                <polygon points="600,25 615,30 600,35" fill="black" />
+                            </svg>
+                    </div>
+
+                    <div class="linha-com-intervalo">
+                        <div><h3 style="font-size: 24px;">\[ [a, b] \]</h3></div>
+                            <svg width="700" height="60">
+                                <line x1="10" y1="30" x2="600" y2="30" stroke="black" stroke-width="1" />
+                                <line x1="190" y1="30" x2="410" y2="30" stroke="red" stroke-width="3" />    
+                                <circle cx="190" cy="30" r="5" fill="red" stroke="red" stroke-width="1"/>
+                                <circle cx="410" cy="30" r="5" fill="red" stroke="red" stroke-width="1"/>
+                                <text x="190" y="20" font-size="18">a</text>
+                                <text x="410" y="20" font-size="18">b</text>
+                                <polygon points="600,25 615,30 600,35" fill="black" />
+                            </svg>
+                    </div>
+
+                    <div class="linha-com-intervalo">
+                        <div><h3 style="font-size: 24px;">\[ [a, b[ \]</h3></div>
+                            <svg width="700" height="60">
+                                <line x1="10" y1="30" x2="600" y2="30" stroke="black" stroke-width="1" />
+                                <line x1="190" y1="30" x2="410" y2="30" stroke="red" stroke-width="3" />    
+                                <circle cx="190" cy="30" r="5" fill="red" stroke="red" stroke-width="1"/>
+                                <circle cx="410" cy="30" r="5" fill="white" stroke="black" stroke-width="1"/>
+                                <text x="190" y="20" font-size="18">a</text>
+                                <text x="410" y="20" font-size="18">b</text>
+                                <polygon points="600,25 615,30 600,35" fill="black" />
+                            </svg>
+                    </div>
+
+                    <div class="linha-com-intervalo">
+                        <div><h3 style="font-size: 24px;">\[ ]a, b] \]</h3></div>
+                            <svg width="700" height="60">
+                                <line x1="10" y1="30" x2="600" y2="30" stroke="black" stroke-width="1" />
+                                <line x1="190" y1="30" x2="410" y2="30" stroke="red" stroke-width="3" />    
+                                <circle cx="190" cy="30" r="5" fill="white" stroke="black" stroke-width="1"/>
+                                <circle cx="410" cy="30" r="5" fill="red" stroke="red" stroke-width="1"/>
+                                <text x="190" y="20" font-size="18">a</text>
+                                <text x="410" y="20" font-size="18">b</text>
+                                <polygon points="600,25 615,30 600,35" fill="black" />
+                            </svg>
+                    </div>
+
+                    <div class="linha-com-intervalo">
+                        <div><h3 style="font-size: 24px;">\[ ]-\infty, a[ \]</h3></div>
+                            <svg width="700" height="60">
+                                <line x1="10" y1="30" x2="600" y2="30" stroke="black" stroke-width="1" />
+                                <line x1="10" y1="30" x2="250" y2="30" stroke="red" stroke-width="3" />    
+                                <circle cx="250" cy="30" r="5" fill="white" stroke="black" stroke-width="1"/>
+                                <text x="250" y="20" font-size="18">a</text>
+                                <polygon points="600,25 615,30 600,35" fill="black" />
+                            </svg>
+                    </div>
+
+                    <div class="linha-com-intervalo">
+                        <div><h3 style="font-size: 24px;">\[ ]-\infty, a] \]</h3></div>
+                            <svg width="700" height="60">
+                                <line x1="10" y1="30" x2="600" y2="30" stroke="black" stroke-width="1" />
+                                <line x1="10" y1="30" x2="250" y2="30" stroke="red" stroke-width="3" />    
+                                <circle cx="250" cy="30" r="5" fill="red" stroke="red" stroke-width="1"/>
+                                <text x="250" y="20" font-size="18">a</text>
+                                <polygon points="600,25 615,30 600,35" fill="black" />
+                            </svg>
+                    </div>
+
+                    <div class="linha-com-intervalo">
+                        <div><h3 style="font-size: 24px;">\[ ]a,+\infty \]</h3></div>
+                            <svg width="700" height="60">
+                                <line x1="10" y1="30" x2="600" y2="30" stroke="black" stroke-width="1" />
+                                <line x1="250" y1="30" x2="600" y2="30" stroke="red" stroke-width="3" />    
+                                <circle cx="250" cy="30" r="5" fill="white" stroke="black" stroke-width="1"/>
+                                <text x="250" y="20" font-size="18">a</text>
+                                <polygon points="600,25 615,30 600,35" fill="black" />
+                            </svg>
+                    </div>
+
+                    <div class="linha-com-intervalo">
+                        <div><h3 style="font-size: 24px;">\[ [a,+\infty[ \]</h3></div>
+                            <svg width="700" height="60">
+                                <line x1="10" y1="30" x2="600" y2="30" stroke="black" stroke-width="1" />
+                                <line x1="250" y1="30" x2="600" y2="30" stroke="red" stroke-width="3" />    
+                                <circle cx="250" cy="30" r="5" fill="red" stroke="red" stroke-width="1"/>
+                                <text x="250" y="20" font-size="18">a</text>
+                                <polygon points="600,25 615,30 600,35" fill="black" />
+                            </svg>
+                    </div>
+
+                    <div class="linha-com-intervalo">
+                        <div><h3 style="font-size: 24px;">\[ ]-\infty,+\infty[ \]</h3></div>
+                            <svg width="700" height="60">
+                                <line x1="10" y1="30" x2="600" y2="30" stroke="red" stroke-width="3" />   
+                                <polygon points="600,25 615,30 600,35" fill="black" />
+                            </svg>
+                    </div>
+
+                <h2>Exercises</h2>
+
+                </div>
+            </article>
+        </div>
+
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Artigos Recentes</h3>
+                <ul class="article-list">
+                    <li><a href="#">Como criar um site responsivo</a></li>
+                    <li><a href="#">Tendências de design para 2023</a></li>
+                    <li><a href="#">Introdução ao CSS Grid</a></li>
+                    <li><a href="#">JavaScript moderno</a></li>
+                    <li><a href="#">Acessibilidade na web</a></li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+    <section class="cards-section container">
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="https://via.placeholder.com/400x300/990000/ffffff?text=Card+1" alt="Card 1">
+                    <h3 class="card-title-overlay">Título Card 1</h3>
+                </div>
+                <div class="card-content">
+                    <p>Resumo breve do conteúdo do card 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <a href="#" class="read-more">Leia mais</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="https://via.placeholder.com/400x300/990000/ffffff?text=Card+2" alt="Card 2">
+                    <h3 class="card-title-overlay">Título Card 2</h3>
+                </div>
+                <div class="card-content">
+                    <p>Resumo breve do conteúdo do card 2. Nullam in dui mauris. Vivamus hendrerit arcu sed erat.</p>
+                    <a href="#" class="read-more">Leia mais</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="https://via.placeholder.com/400x300/990000/ffffff?text=Card+3" alt="Card 3">
+                    <h3 class="card-title-overlay">Título Card 3</h3>
+                </div>
+                <div class="card-content">
+                    <p>Resumo breve do conteúdo do card 3. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
+                    <a href="#" class="read-more">Leia mais</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 My Site in Red. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../../../src/js/script.js"></script>
+</body>
+</html>

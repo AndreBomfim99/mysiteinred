@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Site in Red</title>
+    <link rel="stylesheet" href="src/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>My Site in Red</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="pages/about_me/about_me.html">About me</a></li>
+                    <li><a href="pages/curriculum/curriculum.html">Resume</a></li>
+                    <li><a href="#">Articles</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+<div class="search-bar">
+    <div class="container search-bar-container">
+        <form action="#" method="get" class="search-form">
+            <input type="text" placeholder="Search...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/andre-bomfim/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://x.com/andrebomfim999" target="_blank"><i class="fa-brands fa-square-x-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/AndreBomfim99" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</div>
+    <main class="main-content container">
+        <div class="content">
+            <article class="main-article">
+                <h2>About me</h2>
+                <p class="article-meta">Published on July 10, 2025 by André</p>
+                <div class="article-content">
+                    <h3>Γειά σου!</h3>
+                    <h3>Hello!</h3>
+
+                    <p>My name is André, and I’m from São Paulo, Brazil. In this article, I’d like to introduce myself, share a bit of my
+                        background, and explain why I created this website.</p>
+                        <figure>
+                            <img src="pages/about_me/img/img01.jpg" alt="SaoPaulo" style="display: block; margin: 0 auto; width: 400px;">
+                            <figcaption>São Paulo is one of the largest cities in the world.</figcaption>
+                        </figure>
+
+                    <h3>A little about me</h3>
+
+                    <p>I’ve always been a curious person. Since childhood, I’ve had a strong desire to understand how and why things exist,
+                        how they work, and what’s behind them. This curiosity applies to objects, people, and even the universe. I enjoy
+                        learning a bit about everything—from turning plastic bags into gasoline, to human psychology, to the origins of
+                        languages spoken by Paleolithic tribes.</p>
+
+                    <h3>My education</h3>
+
+                    <p>I hold a technical degree in Industrial Automation and Electronics from SENAI (Serviço Nacional de Aprendizagem
+                        Industrial), a Brazilian institution focused on industrial and technical education. You could compare it to a blend
+                        of Community Colleges and Trade Schools in the U.S., or Further Education colleges in the U.K., depending on the
+                        program type. SENAI offers free courses, technical diplomas, and even undergraduate degrees, all geared toward
+                        industry.</p><br>
+
+                    <a href="pages/about_me/about_me.html" class="read-more">Continue reading...</a>
+                </div>
+            </article>
+        </div>
+
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Recent Articles</h3>
+                <ul class="article-list">
+                    <li><a href="pages/about_me/about_me.html">A brief overview of my journey</a></li>
+                    <li><a href="#">My Resume</a></li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+    <section class="cards-section container">
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="pages/about_me/img/img02.jpg" alt="Card 1">
+                    <h3 class="card-title-overlay">Título Card 1</h3>
+                </div>
+                <div class="card-content">
+                    <p>Resumo breve do conteúdo do card 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <a href="#" class="read-more">Leia mais</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="https://via.placeholder.com/400x300/990000/ffffff?text=Card+2" alt="Card 2">
+                    <h3 class="card-title-overlay">Título Card 2</h3>
+                </div>
+                <div class="card-content">
+                    <p>Resumo breve do conteúdo do card 2. Nullam in dui mauris. Vivamus hendrerit arcu sed erat.</p>
+                    <a href="#" class="read-more">Leia mais</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="https://via.placeholder.com/400x300/990000/ffffff?text=Card+3" alt="Card 3">
+                    <h3 class="card-title-overlay">Título Card 3</h3>
+                </div>
+                <div class="card-content">
+                    <p>Resumo breve do conteúdo do card 3. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
+                    <a href="#" class="read-more">Leia mais</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 My Site in Red. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="src/js/main.js"></script>
+</body>
+</html>
