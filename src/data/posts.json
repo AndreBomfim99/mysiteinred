@@ -1,0 +1,23 @@
+[
+    {
+        "title": "Algebra Basics",
+        "description": "Start your journey with basic algebra concepts.",
+        "image": "pages/articles/math/img/algebra.jpg",
+        "link": "pages/articles/math/algebra.html"
+    },
+    {
+        "title": "Calculus Made Easy",
+        "description": "Understand calculus intuitively with real examples.",
+        "image": "pages/articles/math/img/calculus.jpg",
+        "link": "pages/articles/math/calculus.html"
+    },
+    {
+        "title": "Programming with Python",
+        "description": "Discover the fundamentals of Python programming.",
+        "image": "pages/articles/cs/img/python.jpg",
+        "link": "pages/articles/cs/python.html"
+    }
+    
+]
+
+
