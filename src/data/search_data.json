@@ -1,24 +1,17 @@
 [
     {
-        "title": "Algebra Basics",
-        "link": "pages/articles/math/algebra.html",
-        "description": "Start your journey with basic algebra concepts."
-    },
-    {
-        "title": "Calculus Made Easy",
-        "link": "pages/articles/math/calculus.html",
-        "description": "Understand calculus intuitively with real examples."
-    },
-    {
+        "title": "About Me - André Bomfim",
+        "link": "pages/articles/about/about_me.html",
+        "description": "André, biography, trajectory, electronics, automation, SENAI, ETEC, FATEC, UNIVESP, civil construction, engineering, computer engineering, programming, data, data science, career, professional experience, portfolio, knowledge"
+    }
+
+
+    /*{
         "title": "Programming with Python",
         "link": "pages/articles/cs/python.html",
         "description": "Discover the fundamentals of Python programming."
-    },
-    {
-        "title": "Introduction to Physics",
-        "link": "pages/articles/physics/intro.html",
-        "description": "Learn the foundations of motion, forces, and energy."
-    }
+    },*/
+   
 ]
 
 

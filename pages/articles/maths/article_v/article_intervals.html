@@ -17,36 +17,14 @@
       margin-top: 10px;
       margin-left: 20px;
     }
+
   </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <h1>My Site in Red</h1>
-            </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#">About me</a></li>
-                    <li><a href="#">Articles</a></li>
-                    <li><a href="#">Texts</a></li>
-                </ul>
-            </nav>
-            <div class="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </header>
 
-    <div class="search-bar">
-        <div class="container">
-            <form action="#" method="get">
-                <input type="text" placeholder="Buscar artigos...">
-                <button type="submit"><i class="fas fa-search"></i></button>
-            </form>
-        </div>
-    </div>
+    <div id="header"></div>
+    
+    <div id="searchbar"></div>
 
     <main class="main-content container">
         <div class="content">
@@ -266,12 +244,12 @@
 
                 <h2>Exercises</h2>
 
-                <h3>Interactive Interval: Let's practice.</h3>
+                <h3 style="color: #990000; font-size: 20px;">Exercise 1: Interactive Interval: Let's practice.</h3>
                 <div style="margin-bottom: 10px;">Click on the number line to mark points a and b. Click once to mark an open interval point, and double-click to mark a closed interval point.</div>
                 <svg id="numberLine" width="700" height="100" style="border:1px solid #ccc; cursor: pointer;">
                     <line x1="50" y1="50" x2="650" y2="50" stroke="black" stroke-width="2" />
                 </svg>
-                <div id="result" style="margin-top: 10px; font-size: 18px; font-weight: bold;">Intervalo: _</div>
+                <div id="result" style="margin-top: 10px; font-size: 18px; font-weight: bold;">Interval: _</div><br>
 
                 <script>
                     const svg = document.getElementById('numberLine');
@@ -354,81 +332,84 @@
 
                     function updateInterval() {
                         if (points.length < 2) {
-                            result.textContent = 'Intervalo: _';
+                            result.textContent = 'Interval: _';
                             return;
                         }
                         const [p1, p2] = points.sort((a, b) => a.value - b.value);
                         const left = p1.isClosed ? '[' : ']';
                         const right = p2.isClosed ? ']' : '[';
-                        result.textContent = `Intervalo: ${left}${p1.value}, ${p2.value}${right}`;
+                        result.textContent = `Interval: ${left}${p1.value}, ${p2.value}${right}`;
                     }
                 </script>
 
+                <h3 style="color: #990000; font-size: 20px;">Exercise 2: Represent each of the following sets on the real number line.</h3>
+                   <div style="font-size: 20px; margin-left: -600px;">
+                        \[
+                            \begin{aligned}
+                            A &= \{ x \in \mathbb{R} \mid 1 \leq x \leq 2 \} \\[6pt]
+                            B &= \{ x \in \mathbb{R} \mid 0 < x < 3 \} \\[6pt]
+                            C &= \{ x \in \mathbb{R} \mid x \leq 0 \ \text{or} \ x > 2 \} \\[6pt]
+                            D &= \{ x \in \mathbb{R} \mid -1 < x < 0 \ \text{or} \ x \geq 3 \}
+                            \end{aligned}
+                        \]
+                  </div>
 
+                  <h3 style="color: #990000; font-size: 20px;">Exercise 3 92: Describe the following sets:</h3>
+                   <div style="font-size: 20px; margin-left: -725px;">
+                    \[
+                    \begin{aligned}
+                    \text{a)} &\ [0, 2] \cap [1, 3] \\[6pt]
+                    \text{b)} &\ [0, 2] \cap \; ]1, 3[ \\[6pt]
+                    \text{c)} &\ ]-1, \tfrac{2}{5}[ \; \cap \; ]0, \tfrac{4}{3}[ \\[6pt]
+                    \text{d)} &\ ]-\infty, 2] \cap [0, +\infty[ \\[6pt]
+                    \text{e)} &\ [-1, +\infty[ \cap \; \left[ -\tfrac{9}{2}, 2 \right[ \\[6pt]
+                    \text{f)} &\ [1, 2] \cap [0, 3] \cap [-1, 4]
+                    \end{aligned}
+                    \]
+                  </div><br>
+                  
+                  <h3 style="color: #990000; font-size: 20px;">
+                    Exercise 4 95:
+                    \( \text{Given } A = \{ x \in \mathbb{R} \mid -1 < x \leq 3 \} \; \text{and} \; B = \{ x \in \mathbb{R} \mid 2 < x \leq 5 \}, \; \text{calculate } A \cup B. \)
+                  </h3><br>
+
+                  <h3 style="color: #990000; font-size: 20px;">
+                        Exercise 5 97: Determine the intersection of the sets:
+                  </h3>
+                  <div style="font-size: 20px; text-align: left;">
+                        \( \mathbb{R} \cap \mathbb{Q}; \; (\mathbb{N} \cap \mathbb{Z}) \cup \mathbb{Q} \; \text{and} \; \mathbb{N} \cup (\mathbb{Z} \cap \mathbb{Q}). \)
+                  </div>
+
+
+
+
+
+
+
+
+
+
+                
+                
+                
+                
 
 
                 </div>
             </article>
         </div>
 
-        <aside class="sidebar">
-            <div class="sidebar-section">
-                <h3>Artigos Recentes</h3>
-                <ul class="article-list">
-                    <li><a href="#">Como criar um site responsivo</a></li>
-                    <li><a href="#">Tendências de design para 2023</a></li>
-                    <li><a href="#">Introdução ao CSS Grid</a></li>
-                    <li><a href="#">JavaScript moderno</a></li>
-                    <li><a href="#">Acessibilidade na web</a></li>
-                </ul>
-            </div>
-        </aside>
+       <div id="sidebar"></div>
     </main>
 
-    <section class="cards-section container">
-        <div class="cards-container">
-            <div class="card">
-                <div class="card-image-container">
-                    <img src="https://via.placeholder.com/400x300/990000/ffffff?text=Card+1" alt="Card 1">
-                    <h3 class="card-title-overlay">Título Card 1</h3>
-                </div>
-                <div class="card-content">
-                    <p>Resumo breve do conteúdo do card 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <a href="#" class="read-more">Leia mais</a>
-                </div>
-            </div>
+    <div id="cards-section"></div>
 
-            <div class="card">
-                <div class="card-image-container">
-                    <img src="https://via.placeholder.com/400x300/990000/ffffff?text=Card+2" alt="Card 2">
-                    <h3 class="card-title-overlay">Título Card 2</h3>
-                </div>
-                <div class="card-content">
-                    <p>Resumo breve do conteúdo do card 2. Nullam in dui mauris. Vivamus hendrerit arcu sed erat.</p>
-                    <a href="#" class="read-more">Leia mais</a>
-                </div>
-            </div>
+    <div id="footer"></div>
 
-            <div class="card">
-                <div class="card-image-container">
-                    <img src="https://via.placeholder.com/400x300/990000/ffffff?text=Card+3" alt="Card 3">
-                    <h3 class="card-title-overlay">Título Card 3</h3>
-                </div>
-                <div class="card-content">
-                    <p>Resumo breve do conteúdo do card 3. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
-                    <a href="#" class="read-more">Leia mais</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <script src="/src/js/cards.js"></script> 
+    <script src="/src/js/main.js"></script> 
+    <script src="/src/js/search.js"></script> 
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 My Site in Red. Todos os direitos reservados.</p>
-        </div>
-    </footer>
-
-    <script src="../../../src/js/script.js"></script>
 </body>
 </html>
 
