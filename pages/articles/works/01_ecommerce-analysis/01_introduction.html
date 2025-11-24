@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction - E-commerce Analytics Project</title>
+    <link rel="stylesheet" href="../../../../../src/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .content {
+            margin: 0 40px;
+        }
+        
+        .main-article {
+            padding: 40px;
+            margin: 20px 0;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .article-content {
+            line-height: 1.6;
+        }
+        
+        .article-content h2 {
+            margin: 40px 0 20px 0;     
+            padding: 0 0 10px 0;       
+            border-bottom: 2px solid #e0e0e0;
+            text-align: left;          
+            font-size: 1.8em;
+        }
+        
+        .article-content h3 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .article-content p {
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: #fff;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        
+        .recommendation {
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #007bff;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+        }
+        
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .workflow {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .checklist {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        
+        .checklist-item {
+            margin-bottom: 10px;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                margin: 0 20px;
+            }
+            
+            .main-article {
+                padding: 20px;
+                margin: 10px 0;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header"></div>
+    
+    <div id="searchbar"></div>
+
+    <main class="main-content container">
+        <div class="content">
+            <article class="main-article">
+                <h1>Introduction</h1>
+                <div class="article-content">
+                    
+                    <h2>Motivation for this project</h2>
+
+                    <p>Technical skills are fundamental to being a good professional, but knowing how to apply them productively is what really matters. It's like having an excellent set of tools and knowing the name of each one, but not being able to use them to build something concrete and meaningful.</p>
+
+                    <p>That's how I felt. I have technical knowledge in programming, databases, data structures, Python, and more... but I still felt inexperienced. The applications I built seemed simple and amateurish, even when I tried my best. They were far below the solutions I saw from other professionals. Recognizing this gap was the first step.</p>
+
+                    <p>While researching how to improve, I realized I needed to specialize before trying to do everything at once. For someone starting out, having clear direction makes all the difference. During this process, I came across the book <strong>"Lean Analytics: Use Data to Build a Better Startup Faster"</strong> by Alistair Croll and Benjamin Yoskovitz, which inspired me and reminded me of <strong>Cohort Analysis</strong> from my college statistics course—a topic that always interested me. I've always enjoyed mathematics, especially statistics and financial mathematics.</p>
+
+                    <p>That's how this project was born: a way to work on strategic analysis, exercise my ability to connect data to business decisions, and above all, develop robust analysis with clear communication.</p>
+
+                    <p>This material certainly has imperfections, but I'll use it to study and continually improve. It's my first draft and starting point for future projects.</p>
+
+                    <h2>Chosen technical stack and why</h2>
+
+                    <h3>BigQuery:</h3>
+                    <p>I chose BigQuery as my data warehouse because of its ability to process SQL queries on large volumes without infrastructure setup. Additionally, the Free Tier offers 10GB of storage and 1TB of monthly processing, more than enough for this project. Queries that would take minutes in local PostgreSQL run in seconds on BigQuery thanks to its columnar architecture and distributed processing. I also wanted to learn a cloud service beyond AWS.</p>
+
+                    <h3>dbt Core:</h3>
+                    <p>dbt brings software engineering best practices to SQL: versioning, automated testing, auto-generated documentation, and code modularization. Instead of scattered SQL scripts, I have a well-documented pipeline. However, during the project I realized I didn't need dbt as much as I thought. I overestimated the complexity of my project, which is something difficult to learn from isolated exercises alone. It was a valuable lesson.</p>
+                    
+                    <h3>Looker Studio:</h3>
+                    <p>I'm an advanced Power BI user and intermediate with Tableau, but I wanted to try a different BI tool—that's where Looker Studio comes in. I chose it for its native integration with BigQuery and much lower learning curve compared to Power BI and Tableau.</p>
+                    
+                    <h3>Why I didn't use local PostgreSQL:</h3>
+                    <p>I love working with PostgreSQL, but it would require managing servers, backups, and scalability. I wanted to simulate a professional environment with serverless cloud solutions like BigQuery to reduce operational overhead. This project attempts to simulate real production architecture, albeit on a smaller scale.</p>
+                    
+                    <h2>What I learned from this project</h2>
+                    
+                    <ul>
+                        <li>How to structure a data warehouse in layers (staging → marts)</li>
+                        <li>Implement cohort analysis to measure retention</li>
+                        <li>Customer segmentation with RFM Analysis</li>
+                        <li>Document data pipelines professionally</li>
+                        <li>Free Tier limitations and how to work around them</li>
+                        <li>Better tool sizing and selection</li>
+                    </ul>
+
+                </div>
+            </article>
+        </div>
+
+        <div id="sidebar"></div>
+    </main>
+
+    <div id="cards-section"></div>
+
+    <div id="footer"></div>
+    
+    <script src="../../../../../src/js/main.js"></script> 
+    <script src="../../../../../src/js/search.js"></script> 
+    <script src="../../../../../src/js/cards.js"></script> 
+    
+</body>
+</html>

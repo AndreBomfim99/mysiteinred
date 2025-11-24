@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Setup Guide: BigQuery, dbt, Looker Studio</title>
+    <link rel="stylesheet" href="../../../../../src/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .content {
+            margin: 0 40px;
+        }
+        
+        .main-article {
+            padding: 40px;
+            margin: 20px 0;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .article-content {
+            line-height: 1.6;
+        }
+        
+        .article-content h2 {
+            margin: 40px 0 20px 0;     
+            padding: 0 0 10px 0;       
+            border-bottom: 2px solid #e0e0e0;
+            text-align: left;          
+            font-size: 1.8em;
+            
+        }
+        
+        .article-content h3 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .article-content p {
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: #fff;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        
+        .recommendation {
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #007bff;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+        }
+        
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .workflow {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .checklist {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        
+        .checklist-item {
+            margin-bottom: 10px;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                margin: 0 20px;
+            }
+            
+            .main-article {
+                padding: 20px;
+                margin: 10px 0;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header"></div>
+    
+    <div id="searchbar"></div>
+
+    <main class="main-content container">
+        <div class="content">
+            <article class="main-article">
+                <h1>COMPLETE GUIDE: BigQuery + dbt + Looker Studio (FREE TIER)</h1>
+                <div class="article-content">
+                    
+                    <h2>OVERVIEW OF WHAT WE'LL DO</h2>
+                    
+                    <div class="Workflow">
+                        <strong>CSVs (Kaggle)</strong><br>
+                        ↓<br>
+                        <strong>BigQuery (manual upload)</strong><br>
+                        ↓<br>
+                        <strong>dbt Core (SQL transformations)</strong><br>
+                        ↓<br>
+                        <strong>Looker Studio (dashboards)</strong><br><br>
+                        <strong>Total cost: $0.00</strong>
+                    </div>
+
+                    <h2>PHASE 1: SET UP GOOGLE CLOUD AND BIGQUERY</h2>
+
+                    <h3>STEP 1.1: Create Google Cloud Account</h3>
+                    <ol>
+                        <li>Go to: https://console.cloud.google.com</li>
+                        <li>Log in with your Google account</li>
+                        <li>If it's your first time, accept the terms</li>
+                        <li><strong>NO credit card required for Free Tier!</strong></li>
+                    </ol>
+
+                    <h3>STEP 1.2: Create a GCP Project</h3>
+                    <ol>
+                        <li>In the Google Cloud Console, click the top bar where the project name is displayed (or "Select a project")</li>
+                        <li>Click "NEW PROJECT"</li>
+
+                        <img src="img/img01.jpg" alt="Google Cloud Console - Project selection" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>Fill in:
+                            <ul>
+                                <li><strong>Project name:</strong> ecommerce-olist-analysis</li>
+                                <li><strong>Project ID:</strong> it will generate one automatically, but if it creates an ID very different from the project name, click edit and enter the same name as the project or an easier name (e.g., ecommerce-olist-analysis-id)</li>
+                                <li><strong>Location:</strong> No organization</li>
+                            </ul>
+                        </li>
+                        <li>Click "CREATE"</li>
+                        <img src="img/img02.jpg" alt="Create new project form" style="width: 80%; max-width: 900px; height: auto;">
+                        <li>Wait 10-30 seconds</li>
+                        <li>Click "SELECT PROJECT" when the notification appears</li>
+                    </ol>
+                    <img src="img/img03.jpg" alt="Project creation notification" style="width: 80%; max-width: 900px; height: auto;">
+
+                    <h3>STEP 1.3: Enable BigQuery API</h3>
+                    <ol>
+                        <li>In the side menu (☰), go to "APIs & Services" → "Library"</li>
+
+                        <img src="img/img04.jpg" alt="APIs & Services menu" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>In the search bar, type: BigQuery API</li>
+                        <li>Click "BigQuery API"</li>
+
+                        <img src="img/img05.jpg" alt="BigQuery API search results" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>Click "ENABLE"</li>
+                        <li>Wait for activation (10-20 seconds)</li>
+                    </ol>
+
+                    <img src="img/img06.jpg" alt="BigQuery API enabled" style="width: 80%; max-width: 900px; height: auto;">
+
+                    <h3>STEP 1.4: Create Dataset in BigQuery</h3>
+                    <ol>
+                        <li>In the side menu (☰), go to "BigQuery" → "SQL workspace"</li>
+
+                        <img src="img/img07.jpg" alt="BigQuery menu option" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>On the left sidebar, find your project (ecommerce-olist-analysis)</li>
+                        <li>Click the 3 dots next to the project name</li>
+                        <li>Click "Create dataset"</li>
+
+                        <img src="img/img08.jpg" alt="Create dataset option" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>Fill in:
+                            <ul>
+                                <li><strong>Dataset ID:</strong> olist_ecommerce</li>
+                                <li><strong>Data location:</strong> us (multiple regions in United States) – IMPORTANT: use US for Free Tier!</li>
+                                <li>Open Advanced Option and go to Default table expiration: leave unchecked</li>
+                            </ul>
+                        </li>
+                        <li>Click "CREATE DATASET"</li>
+                    </ol>
+
+                    <img src="img/img09.jpg" alt="Dataset creation form" style="width: 80%; max-width: 900px; height: auto;">
+
+                    <h2>PHASE 2: UPLOAD CSVs TO BIGQUERY</h2>
+
+                    <h3>STEP 2.1: Prepare CSV files</h3>
+                    <ol>
+                        <li>Go to https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce</li>
+                        <li>Download the CSVs</li>
+                        <li>Open Windows Explorer</li>
+                        <li>Create the raw folder at C:\YOUR-FOLDER\ecommerce-analysis\data\raw\</li>
+                        <li>Place the 9 CSV files you downloaded in this folder</li>
+                    </ol>
+
+                    <h3>STEP 2.2: Upload CUSTOMERS table</h3>
+                    <ol>
+                        <li>In the <strong>BigQuery Console</strong>, click the dataset <strong>oList_ecommerce</strong> (left sidebar)</li>
+                        <li>Click "CREATE TABLE" (button at the top or in the 3 dots of the dataset)</li>
+
+                        <img src="img/img10.jpg" alt="Create table button" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>Fill in:
+                            <ul>
+                                <li><strong>Source:</strong>
+                                    <ul>
+                                        <li>Create table from: Upload</li>
+                                        <li>Select file: click and choose oList_customers_dataset.csv</li>
+                                        <li>File format: CSV</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Destination:</strong>
+                                    <ul>
+                                        <li>Project: ecommerce-olist-analysis</li>
+                                        <li>Dataset: oList_ecommerce</li>
+                                        <li>Table: customers ~ IMPORTANT: name without "olist_" and without "_dataset"</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Schema:</strong>
+                                    <ul>
+                                        <li>Check "Auto detect"</li>
+                                    </ul>
+
+                                    <img src="img/img11.jpg" alt="Schema auto-detect option" style="width: 80%; max-width: 900px; height: auto;">
+
+                                </li>
+                                <li><strong>Advanced options:</strong>
+                                    <ul>
+                                        <li>Header rows to skip: 1 (skip header)</li>
+                                        <li>Check "Allow jagged rows"</li>
+                                        <li>Check "Allow quoted newlines"</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Click "CREATE TABLE"</li>
+
+                        <img src="img/img12.jpg" alt="Create table confirmation" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>Wait for upload (1-2 minutes)</li>
+                        <li>You should see "Table created successfully" or "Load job Created"</li>
+                    </ol>
+
+                    <h3>STEP 2.3: Upload remaining tables</h3>
+                    <p>Repeat <strong>STEP 2.2</strong> for each file, using these table names:</p>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>File</th>
+                                <th>BigQuery Table Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>olist_customers_dataset.csv</td>
+                                <td>customers (already done)</td>
+                            </tr>
+                            <tr>
+                                <td>olist_geolocation_dataset.csv</td>
+                                <td>geolocation (optional)</td>
+                            </tr>
+                            <tr>
+                                <td>olist_order_items_dataset.csv</td>
+                                <td>order_items</td>
+                            </tr>
+                            <tr>
+                                <td>olist_order_payments_dataset.csv</td>
+                                <td>order_payments</td>
+                            </tr>
+                            <tr>
+                                <td>olist_order_reviews_dataset.csv</td>
+                                <td>order_reviews</td>
+                            </tr>
+                            <tr>
+                                <td>olist_orders_dataset.csv</td>
+                                <td>orders</td>
+                            </tr>
+                            <tr>
+                                <td>olist_products_dataset.csv</td>
+                                <td>products</td>
+                            </tr>
+                            <tr>
+                                <td>olist_sellers_dataset.csv</td>
+                                <td>sellers</td>
+                            </tr>
+                            <tr>
+                                <td>product_category_name_translation.csv</td>
+                                <td>product_category_translation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <p>Total time: 15-20 minutes for all uploads</p>
+                    
+                    <div class="">
+                        <strong>Note:</strong> For the product_category_name_translation.csv file, you'll need to make a correction:
+                        Don't check Auto detect, but click Edit as text and paste the following code:
+                        <div class="code-block">
+                            [<br>
+                            &nbsp;&nbsp;{"name": "product_category_name", "type": "STRING"},<br>
+                            &nbsp;&nbsp;{"name": "product_category_name_english", "type": "STRING"}<br>
+                            ]
+                        </div>
+                        Complete the rest of the process.
+                    </div>
+
+                    <img src="img/img12a.jpg" alt="Schema definition for translation table" style="width: 80%; max-width: 900px; height: auto;">
+
+                    <h3>STEP 2.4: Verify data was loaded</h3>
+                    <ol>
+                        <li>In BigQuery Console, click the orders table (left sidebar)</li>
+                        <li>Click the "PREVIEW" tab</li>
+                        <li>Should show the first rows of data</li>
+
+                        <img src="img/img13.jpg" alt="Table preview" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>Or run this query:
+                            <ul>
+                                <li>Click "QUERY" (button at the top)</li>
+                                <li>Type:
+                                    <div class="code-block">
+                                        SELECT COUNT(*) as total_orders <br>
+                                        FROM `ecommerce-olist-analysis.olist_ecommerce.orders`
+                                    </div>
+                                </li>
+                                <li>Click "RUN"</li>
+                                <li>Should return ~99,441 orders</li>
+
+                                <img src="img/img14.jpg" alt="Query results showing order count" style="width: 80%; max-width: 900px; height: auto;">
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h2>PHASE 3: INSTALL AND CONFIGURE DBT CORE</h2>
+
+                    <h3>STEP 3.1: Install dbt locally (Windows)</h3>
+                    <ol>
+                        <li>Open VS Code</li>
+                        <li>Open the project folder: C:\YOUR-FOLDER\ecommerce-analysis</li>
+                        <li>Open Terminal in VS Code (Ctrl + `)</li>
+                        <li>Create Python virtual environment:
+                            <div class="code-block">python -m venv venv</div>
+                        </li>
+                        <li>Activate virtual environment:
+                            <div class="code-block">venv\Scripts\activate</div>
+                        </li>
+                        <li>Install dbt-bigquery:
+                            <div class="code-block">pip install dbt-bigquery</div>
+                        </li>
+
+                        <img src="img/img15.jpg" alt="dbt installation process" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>Wait for installation (2-3 minutes)</li>
+                        <li>Verify installation:
+                            <div class="code-block">dbt --version</div>
+                            Should show the version as in the image
+                        </li>
+
+                        <img src="img/img16.jpg" alt="dbt version output" style="width: 80%; max-width: 900px; height: auto;">
+
+                    </ol>
+
+                    <h3>STEP 3.2: Create Service Account in GCP</h3>
+                    <ol>
+                        <li>In Google Cloud Console, go to ☰ → "IAM & Admin" → "Service Accounts"</li>
+
+                        <img src="img/img17.jpg" alt="Service Accounts menu" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>Click "+ CREATE SERVICE ACCOUNT"</li>
+
+                        <img src="img/img18.jpg" alt="Create service account button" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>Fill in:
+                            <ul>
+                                <li><strong>Service account name:</strong> dbt-bigquery</li>
+                                <li><strong>Service account ID:</strong> will auto-fill</li>
+                                <li><strong>Description:</strong> Service account for dbt transformations</li>
+                            </ul>
+                        </li>
+                        <li>Click "CREATE AND CONTINUE"</li>
+
+                        <img src="img/img19.jpg" alt="Service account details form" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>In the "Grant this service account access to project" section:
+                            <ul>
+                                <li>Role: select "BigQuery Admin"</li>
+                                <li>Click "CONTINUE"</li>
+                            </ul>
+                        </li>
+                        <li>Click "DONE"</li>
+
+                        <img src="img/img20.jpg" alt="Service account role assignment" style="width: 80%; max-width: 900px; height: auto;">
+
+                    </ol>
+
+                    <h3>STEP 3.3: Download Service Account JSON key</h3>
+                    <ol>
+                        <li>In the Service Accounts list, find dbt-bigquery@...</li>
+                        <li>Click the 3 dots (actions) at the end of the row</li>
+                        <li>Click "Manage keys"</li>
+
+                        <img src="img/img21.jpg" alt="Manage keys option" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>Click "ADD KEY" → "Create new key"</li>
+
+                        <img src="img/img22.jpg" alt="Add key menu" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>Select "JSON"</li>
+                        <li>Click "CREATE"</li>
+                        <li>A JSON file will be automatically downloaded (e.g., ecommerce-olist-analysis-xxxxx.json) this will be your key</li>
+                        <li><strong>Create the keys folder so it looks like this C:\YOUR-FOLDER\ecommerce-analysis\keys</strong></li>
+                        <li>Move your key to this folder and rename it to gcp-key.json</li>
+                    </ol>
+
+                    <h3>STEP 3.4: Initialize dbt project</h3>
+                    <ol>
+                        <li>In VS Code terminal (with venv active), type:
+                            <div class="code-block">dbt init</div>
+                        </li>
+                        <li>Answer the questions:
+                            <ul>
+                                <li><strong>Project name:</strong> Olist_analytics</li>
+                                <li><strong>Which database:</strong> type 1 (BigQuery)</li>
+                                <li><strong>Method of authentication:</strong> type 2 (or the number that appears for service-account)</li>
+                                <li><strong>Keyfile location:</strong> C:\YOUR-FOLDER\ecommerce-analysis\keys\gcp-key.json</li>
+                                <li><strong>Project ID:</strong> enter the project ID (e.g., ecommerce-olist-analysis)</li>
+                                <li><strong>Dataset:</strong> olist_ecommerce_dbt - New dataset for dbt models</li>
+                                <li><strong>Threads:</strong> 4</li>
+                                <li><strong>Location:</strong> US (use the corresponding number)</li>
+                                <li><strong>Timeout:</strong> 300</li>
+                            </ul>
+
+                            <img src="img/img23.jpg" alt="dbt init configuration prompts" style="width: 80%; max-width: 900px; height: auto;">
+
+                            <img src="img/img24.jpg" alt="dbt init completion" style="width: 80%; max-width: 900px; height: auto;">
+
+                        </li>
+                    </ol>
+
+                    <h3>STEP 3.5: Test connection to BigQuery</h3>
+                    <ol>
+                        <li>Enter the dbt folder:
+                            <div class="code-block">cd olist_analytics</div>
+                        </li>
+                        <li>Test the connection:
+                            <div class="code-block">dbt debug</div>
+                        </li>
+                        <li>Should show several green lines with a check and at the end:
+                            <div class="code-block">All checks passed!</div>
+                        </li>
+
+                        <img src="img/img25.jpg" alt="dbt debug output" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <img src="img/img26.jpg" alt="dbt debug success message" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>If there's an error: verify that the gcp-key.json path is correct in the profiles.yml file</li>
+                    </ol>
+
+                    <h2>PHASE 4: CREATE DBT MODELS (SQL TRANSFORMATIONS)</h2>
+
+                    <h3>STEP 4.1: Understand dbt structure</h3>
+                    <p>Inside <strong>olist_analytics/</strong>, you'll see:</p>
+                    <div class="code-block">
+                        olist_analytics/<br>
+                        ├── models/<br>
+                        │    ├── example/ ← DELETE later<br>
+                        │    │    ├── schema.yml<br>
+                        ├── dbt_project.yml<br>
+                        └── ...
+                    </div>
+
+                    <h3>STEP 4.2: Configure dbt_project.yml</h3>
+                    <ol>
+                        <li>In VS Code, open List_analytics/dbt_project.yml (respect the spacing, it's essential)</li>
+                        <li>Locate the <strong>models:</strong> section</li>
+                        <li>Replace the entire <strong>models:</strong> block with:
+                            <div class="code-block">
+                                models:<br>
+                                &nbsp;&nbsp;olist_analytics:<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;staging:<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+materialized: view<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+schema: staging<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;marts:<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+materialized: table<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+schema: marts
+                            </div>
+                        </li>
+                        <li>Save the file (Ctrl + S)</li>
+                    </ol>
+
+                    <h3>STEP 4.3: Create folder structure</h3>
+                    <ol>
+                        <li>In VS Code file explorer, inside <strong>olist_analytics/models/</strong>:</li>
+                        <li>Delete the <strong>example</strong> folder (select and press Delete)</li>
+                        <li>Create these folders (right-click → New Folder):
+                            <div class="code-block">
+                                models/<br>
+                                ├── staging/<br>
+                                └── marts/
+                            </div>
+                        </li>
+                    </ol>
+
+                    <h3>STEP 4.4: Create staging model - stg_orders.sql</h3>
+                    <ol>
+                        <li>Inside <strong>models/staging/</strong>, create file: <strong>stg_orders.sql</strong></li>
+                        <li>Paste this content:
+                            <div class="code-block">
+                                -- Staging: Orders with basic cleaning<br>
+                                <br>
+                                SELECT<br>
+                                &nbsp;&nbsp;order_id,<br>
+                                &nbsp;&nbsp;customer_id,<br>
+                                &nbsp;&nbsp;order_status,<br>
+                                &nbsp;&nbsp;CAST(order_purchase_timestamp AS TIMESTAMP) as order_purchase_timestamp,<br>
+                                &nbsp;&nbsp;CAST(order_approved_at AS TIMESTAMP) as order_approved_at,<br>
+                                &nbsp;&nbsp;CAST(order_delivered_carrier_date AS TIMESTAMP) as order_delivered_carrier_date,<br>
+                                &nbsp;&nbsp;CAST(order_delivered_customer_date AS TIMESTAMP) as order_delivered_customer_date,<br>
+                                &nbsp;&nbsp;CAST(order_estimated_delivery_date AS TIMESTAMP) as order_estimated_delivery_date<br>
+                                <br>
+                                FROM {{ source('olist_ecommerce', 'orders') }}<br>
+                                <br>
+                                WHERE order_status IS NOT NULL
+                            </div>
+                        </li>
+                        <li>Save (Ctrl + S)</li>
+                    </ol>
+
+                    <h3>STEP 4.5: Create sources file</h3>
+                    <ol>
+                        <li>Inside <strong>models/staging/</strong>, create file: <strong>sources.yml</strong></li>
+                        <li>Paste this content:
+                            <div class="code-block">
+                                version: 2<br>
+                                <br>
+                                sources:<br>
+                                &nbsp;&nbsp;- name: olist_ecommerce<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;database: ecommerce-olist-analysis<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;schema: olist_ecommerce<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;tables:<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: orders<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: order_items<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: customers<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: products<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: sellers<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: order_payments<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: order_reviews<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: product_category_translation
+                            </div>
+                        </li>
+                        <li>Save (Ctrl + S)</li>
+                        <li>Create models/staging/stg_order_items.sql
+                            <div class="code-block">
+                                SELECT<br>
+                                &nbsp;&nbsp;order_id,<br>
+                                &nbsp;&nbsp;order_item_id,<br>
+                                &nbsp;&nbsp;product_id,<br>
+                                &nbsp;&nbsp;seller_id,<br>
+                                &nbsp;&nbsp;CAST(shipping_limit_date AS TIMESTAMP) as shipping_limit_date,<br>
+                                &nbsp;&nbsp;price,<br>
+                                &nbsp;&nbsp;freight_value<br>
+                                <br>
+                                FROM {{ source('olist_ecommerce','order_items') }}<br>
+                                <br>
+                                WHERE price IS NOT NULL
+                            </div>
+                        </li>
+                    </ol>
+
+                    <h3>STEP 4.6: Create mart model - mart_rfm_analysis.sql</h3>
+                    <ol>
+                        <li>Inside models/marts/, create file: mart_rfm_analysis.sql</li>
+                        <li>Paste this content:
+                            <div class="code-block">
+                                -- RFM Analysis Model<br>
+                                WITH customer_orders AS (<br>
+                                &nbsp;&nbsp;SELECT<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;c.customer_id,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;c.customer_state,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;COUNT(DISTINCT o.order_id) AS frequency,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;SUM(oi.price) AS monetary_value,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;MAX(o.order_purchase_timestamp) AS last_order_date<br>
+                                &nbsp;&nbsp;FROM {{ ref('stg_orders') }} o<br>
+                                &nbsp;&nbsp;JOIN {{ source('olist_ecommerce', 'customers') }} c ON o.customer_id = c.customer_id<br>
+                                &nbsp;&nbsp;JOIN {{ ref('stg_order_items') }} oi ON o.order_id = oi.order_id<br>
+                                &nbsp;&nbsp;GROUP BY c.customer_id, c.customer_state<br>
+                                ),<br>
+                                <br>
+                                rfm_calc AS (<br>
+                                &nbsp;&nbsp;SELECT<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;customer_id,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;customer_state,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;frequency,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;monetary_value,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;DATE_DIFF(CURRENT_DATE(), DATE(last_order_date), DAY) AS recency,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;NTILE(4) OVER (ORDER BY DATE_DIFF(CURRENT_DATE(), DATE(last_order_date), DAY) DESC) AS r_score,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;NTILE(4) OVER (ORDER BY frequency) AS f_score,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;NTILE(4) OVER (ORDER BY monetary_value) AS m_score<br>
+                                &nbsp;&nbsp;FROM customer_orders<br>
+                                )<br>
+                                <br>
+                                SELECT<br>
+                                &nbsp;&nbsp;customer_id,<br>
+                                &nbsp;&nbsp;customer_state,<br>
+                                &nbsp;&nbsp;recency,<br>
+                                &nbsp;&nbsp;frequency,<br>
+                                &nbsp;&nbsp;monetary_value,<br>
+                                &nbsp;&nbsp;r_score,<br>
+                                &nbsp;&nbsp;f_score,<br>
+                                &nbsp;&nbsp;m_score,<br>
+                                &nbsp;&nbsp;CASE<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;WHEN r_score = 4 AND f_score IN (3,4) AND m_score IN (3,4) THEN 'Champions'<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;WHEN r_score IN (3,4) AND f_score IN (1,2,3,4) AND m_score IN (1,2,3,4) THEN 'Loyal Customers'<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;WHEN r_score = 3 AND f_score IN (1,2) AND m_score IN (1,2) THEN 'Potential Loyalists'<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;WHEN r_score = 4 AND f_score = 1 AND m_score = 1 THEN 'New Customers'<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;WHEN r_score = 2 AND f_score IN (2,3) AND m_score IN (2,3) THEN 'At Risk'<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;WHEN r_score = 1 AND f_score IN (1,2,3,4) AND m_score IN (1,2,3,4) THEN 'Lost Customers'<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;ELSE 'Others'<br>
+                                &nbsp;&nbsp;END AS customer_segment<br>
+                                FROM rfm_calc
+                            </div>
+                        </li>
+                        <li>Save (Ctrl + S)</li>
+                    </ol>
+
+                    <h3>STEP 4.7: Run dbt models</h3>
+                    <ol>
+                        <li>In VS Code terminal, make sure you're in the olist_analytics/ folder:
+                            <div class="code-block">cd C:\YOUR-FOLDER\ecommerce-analysis\olist_analytics</div>
+                            (The Python virtual environment must be active, if not use: venv\Scripts\activate)
+                        </li>
+                        <li>Run the models:
+                            <div class="code-block">dbt run</div>
+                        </li>
+                        <li>Should show:
+                            <div class="code-block">
+                                Running with dbt=...<br>
+                                Found 2 models, 0 tests, 0 snapshots...<br>
+                                <br>
+                                Completed successfully<br>
+                                Done. PASS=2 WARN=0 ERROR=0 SKIP=0 TOTAL=2
+                            </div>
+                        </li>
+                    </ol>
+
+                    <h3>STEP 4.8: Verify in BigQuery</h3>
+                    <ol>
+                        <li>Go back to BigQuery Console</li>
+                        <li>Click "REFRESH" on the side panel (refresh icon)</li>
+                        <li>You'll see a NEW dataset: olist_ecommerce_dbt</li>
+                        <li>Inside it:
+                            <ul>
+                                <li>staging.stg_orders (view)</li>
+                                <li>marts.mart_rfm_analysis (table)</li>
+                            </ul>
+                        </li>
+                        <li>Click marts.mart_rfm_analysis → PREVIEW tab</li>
+                        <li>Should show the segmented customers!</li>
+                    </ol>
+
+                    <h2>PHASE 5: CREATE MORE DBT MODELS</h2>
+
+                    <h3>STEP 5.1: Create Cohort Retention model</h3>
+                    <ol>
+                        <li>Create file: models/marts/mart_cohort_retention.sql</li>
+                        <li>Paste:
+                            <div class="code-block">
+                                -- Cohort Retention Analysis<br>
+                                WITH first_orders AS (<br>
+                                &nbsp;&nbsp;SELECT<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;customer_id,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;MIN(DATE(order_purchase_timestamp)) AS first_order_date,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;FORMAT_DATE('%Y-%m', MIN(DATE(order_purchase_timestamp))) AS cohort_month<br>
+                                &nbsp;&nbsp;FROM {{ ref('stg_orders') }}<br>
+                                &nbsp;&nbsp;GROUP BY customer_id<br>
+                                ),<br>
+                                <br>
+                                order_months AS (<br>
+                                &nbsp;&nbsp;SELECT<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;o.customer_id,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;f.cohort_month,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;DATE_DIFF(DATE(o.order_purchase_timestamp), DATE(f.first_order_date), MONTH) AS months_since_first<br>
+                                &nbsp;&nbsp;FROM {{ ref('stg_orders') }} o<br>
+                                &nbsp;&nbsp;JOIN first_orders f ON o.customer_id = f.customer_id<br>
+                                ),<br>
+                                <br>
+                                cohort_data AS (<br>
+                                &nbsp;&nbsp;SELECT<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;cohort_month,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;months_since_first,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;COUNT(DISTINCT customer_id) AS num_customers<br>
+                                &nbsp;&nbsp;FROM order_months<br>
+                                &nbsp;&nbsp;GROUP BY cohort_month, months_since_first<br>
+                                ),<br>
+                                <br>
+                                cohort_sizes AS (<br>
+                                &nbsp;&nbsp;SELECT<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;cohort_month,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;SUM(num_customers) AS cohort_size<br>
+                                &nbsp;&nbsp;FROM cohort_data<br>
+                                &nbsp;&nbsp;WHERE months_since_first = 0<br>
+                                &nbsp;&nbsp;GROUP BY cohort_month<br>
+                                )<br>
+                                <br>
+                                SELECT<br>
+                                &nbsp;&nbsp;c.cohort_month,<br>
+                                &nbsp;&nbsp;c.months_since_first,<br>
+                                &nbsp;&nbsp;c.num_customers,<br>
+                                &nbsp;&nbsp;s.cohort_size,<br>
+                                &nbsp;&nbsp;ROUND(c.num_customers * 100.0 / s.cohort_size, 2) AS retention_rate<br>
+                                FROM cohort_data c<br>
+                                JOIN cohort_sizes s ON c.cohort_month = s.cohort_month<br>
+                                ORDER BY c.cohort_month, c.months_since_first
+                            </div>
+                        </li>
+                        <li>Save</li>
+                    </ol>
+
+                    <h3>STEP 5.2: Create LTV by State model</h3>
+                    <ol>
+                        <li>Create file: models/marts/mart_ltv_by_state.sql</li>
+                        <li>Paste:
+                            <div class="code-block">
+                                -- LTV by State<br>
+                                WITH customer_revenue AS (<br>
+                                &nbsp;&nbsp;SELECT<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;c.customer_id,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;c.customer_state,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;SUM(oi.price) AS total_revenue,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;COUNT(DISTINCT o.order_id) AS total_orders<br>
+                                &nbsp;&nbsp;FROM {{ ref('stg_orders') }} o<br>
+                                &nbsp;&nbsp;JOIN {{ source('olist_ecommerce', 'customers') }} c ON o.customer_id = c.customer_id<br>
+                                &nbsp;&nbsp;JOIN {{ ref('stg_order_items') }} oi ON o.order_id = oi.order_id<br>
+                                &nbsp;&nbsp;GROUP BY c.customer_id, c.customer_state<br>
+                                )<br>
+                                <br>
+                                SELECT<br>
+                                &nbsp;&nbsp;customer_state,<br>
+                                &nbsp;&nbsp;COUNT(customer_id) AS total_customers,<br>
+                                &nbsp;&nbsp;SUM(total_revenue) AS total_revenue,<br>
+                                &nbsp;&nbsp;ROUND(SUM(total_revenue) / COUNT(customer_id), 2) AS ltv_per_customer<br>
+                                FROM customer_revenue<br>
+                                GROUP BY customer_state<br>
+                                ORDER BY total_revenue DESC
+                            </div>
+                        </li>
+                        <li>Save</li>
+                    </ol>
+
+                    <h3>STEP 5.3: Run new models</h3>
+                    <ol>
+                        <li>In terminal:
+                            <div class="code-block">dbt run</div>
+                        </li>
+                        <li>Should show:
+                            <div class="code-block">PASS=4 (2 new models + 2 previous)</div>
+                        </li>
+                    </ol>
+
+                    <h2>PHASE 6: CONNECT LOOKER STUDIO</h2>
+
+                    <h3>STEP 6.1: Access Looker Studio</h3>
+                    <ol>
+                        <li>Open your browser</li>
+                        <li>Go to: https://lookerstudio.google.com</li>
+                        <li>Log in with the same Google account as GCP</li>
+                        <li>Click "Create" → "Data Source"</li>
+                    </ol>
+
+                    <img src="img/img30.jpg" alt="Looker Studio create data source" style="width: 80%; max-width: 900px; height: auto;">
+
+                    <h3>STEP 6.2: Connect to BigQuery</h3>
+                    <ol>
+                        <li>In the connectors list, search for and click "BigQuery"</li>
+
+                        <img src="img/img31.jpg" alt="BigQuery connector" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>Click "AUTHORIZE" (if prompted)</li>
+
+                        <img src="img/img32.jpg" alt="Authorize connection" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>Select:
+                            <ul>
+                                <li>MY PROJECTS</li>
+                                <li>Project: ecommerce-olist-analysis</li>
+                                <li>Dataset: oList_ecommerce_dbt</li>
+                                <li>Table: mart_rfm_analysis (start with this one)</li>
+                            </ul>
+                        </li>
+                        <li>Click "CONNECT" (top right corner)</li>
+
+                        <img src="img/img33.jpg" alt="Connect to table" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>Wait for fields to load (10-20 seconds)</li>
+                        <li>Click "CREATE REPORT" (top right corner)</li>
+
+                        <img src="img/img34.jpg" alt="Create report button" style="width: 80%; max-width: 900px; height: auto;">
+
+                        <li>Click "ADD TO REPORT" in the popup</li>
+                    </ol>
+
+                    <img src="img/img35.jpg" alt="Add to report confirmation" style="width: 80%; max-width: 900px; height: auto;">
+
+                    <h3>Disclaimer: Since Looker Studio is undergoing changes, I won't include images of the chart parameters, but Gemini or Google's AI search assistant can help you navigate.</h3>
+
+                    <h3>STEP 6.3: Create first dashboard - RFM Analysis</h3>
+                    
+                    <ol>
+                        <li>In Looker Studio editor:
+                            <ul>
+                                <li>Click "Add a chart" → "Scorecard"</li>
+                                <li>Drag to the top of the page</li>
+                                <li>Metric: Record Count (rename to "Total Customers")</li>
+                            </ul>
+                        </li>
+                        <li>Add a Pie Chart:
+                            <ul>
+                                <li>Click "Add a chart" → "Pie chart"</li>
+                                <li>Dimension: customer_segment</li>
+                                <li>Metric: Record Count</li>
+                                <li>Chart name: "Customer Segments Distribution"</li>
+                            </ul>
+                        </li>
+                        <li>Add a Table:
+                            <ul>
+                                <li>Click "Add a chart" → "Table"</li>
+                                <li>Dimensions: customer_segment</li>
+                                <li>Metrics:
+                                    <ul>
+                                        <li>Record Count (rename to "Customers")</li>
+                                        <li>monetary_value (Aggregation as: AVG)</li>
+                                        <li>Frequency (Aggregation as: AVG)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Add a Bar Chart:
+                            <ul>
+                                <li>Dimension: customer_segment</li>
+                                <li>Metric: monetary_value (Aggregation as SUM)</li>
+                                <li>Sort: Descending</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h4>It will look something like this image below: </h4>
+
+                    <img src="img/img36.jpg" alt="RFM Analysis dashboard example" style="width: 80%; max-width: 900px; height: auto;">
+
+                    <h3>STEP 6.4: Create dashboard - Cohort Retention</h3>
+                    <ol>
+                        <li>Click "File" → "New Report"</li>
+                        <li>Click "Add data"</li>
+                        <li>Select:
+                            <ul>
+                                <li>BigQuery</li>
+                                <li>Dataset: oList_ecommerce_dbt</li>
+                                <li>Table: mart_cohort_retention</li>
+                            </ul>
+                        </li>
+                        <li>Click "ADD"</li>
+                        <li>Add a Table Pivot with Heatmap:
+                            <ul>
+                                <li>Click "Add a chart" → "Table Pivot with Heatmap"</li>
+                                <li>Row dimension: cohort_month</li>
+                                <li>Column dimension: months_since_first</li>
+                                <li>Metric: retention_rate</li>
+                                <li>Color scale: configure gradient (green = high, red = low)</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h3>STEP 6.5: Create dashboard - LTV by State</h3>
+                    <ol>
+                        <li>Create new report connecting to mart_ltv_by_state table</li>
+                        <li>Add Geo Chart:
+                            <ul>
+                                <li>Geo dimension: customer_state</li>
+                                <li>Metric: ltv_per_customer</li>
+                                <li>Type: Brazil → States</li>
+                            </ul>
+                        </li>
+                        <li>Add Table with ranking:
+                            <ul>
+                                <li>Dimensions: customer_state</li>
+                                <li>Metrics: total_customers, total_revenue, ltv_per_customer</li>
+                                <li>Sort by total_revenue DESC</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h3>STEP 6.6: Share dashboards</h3>
+                    <ol>
+                        <li>In each dashboard, click "Share" (top right corner)</li>
+                        <li>Click "Get shareable link"</li>
+                        <li>Configure: "Anyone with the link can view"</li>
+                        <li>Copy the link</li>
+                        <li>Paste in the dashboards/looker_studio_links.md file in VS Code</li>
+                    </ol>
+
+                    <h2>PHASE 7: DOCUMENT THE PROJECT</h2>
+
+                    <h3>STEP 7.1: Take dashboard screenshots</h3>
+                    <ol>
+                        <li>In each Looker Studio dashboard</li>
+                        <li>Press Print Screen (PrtScn) on keyboard</li>
+                        <li>Open Paint or Snipping Tool</li>
+                        <li>Paste and save to C:\YOUR-FOLDER\ecommerce-analysis\dashboards\screenshots\
+                            <ul>
+                                <li>rfm_analysis.png</li>
+                                <li>cohort_retention.png</li>
+                                <li>ltv_by_state.png</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h3>STEP 7.2: Generate dbt documentation</h3>
+                    <ol>
+                        <li>In VS Code terminal (olist_analytics/ folder):
+                            <div class="code-block">dbt docs generate</div>
+                        </li>
+                        <li>Then:
+                            <div class="code-block">dbt docs serve</div>
+                        </li>
+                        <li>Will automatically open in browser: http://localhost:8080</li>
+                        <li>Explore the interactive model documentation!</li>
+                        <li>Take screenshot and save as dbt_documentation.png</li>
+                    </ol>
+                    
+                    <h2>TROUBLESHOOTING</h2>
+
+                    <h3>Error: "Invalid credentials" in dbt</h3>
+                    <ul>
+                        <li>Verify that the gcp-key.json path is correct</li>
+                        <li>Verify that the Service Account has BigQuery Admin role</li>
+                    </ul>
+
+                    <h3>Error: "Permission denied" in BigQuery</h3>
+                    <ul>
+                        <li>Make sure the dataset is in US region</li>
+                        <li>Verify that the Service Account has permissions</li>
+                    </ul>
+
+                    <h3>Looker Studio won't connect</h3>
+                    <ul>
+                        <li>Use the same Google account as GCP</li>
+                        <li>Verify that the olist_ecommerce_dbt dataset exists</li>
+                    </ul>
+
+                    <h3>dbt run fails</h3>
+                    <ul>
+                        <li>Run dbt debug first</li>
+                        <li>Read the complete error message</li>
+                        <li>Verify SQL syntax in models</li>
+                    </ul>
+
+                </div>
+            </article>
+        </div>
+
+        <div id="sidebar"></div>
+    </main>
+
+    <div id="cards-section"></div>
+
+    <div id="footer"></div>
+    
+    <script src="../../../../../src/js/main.js"></script> 
+    <script src="../../../../../src/js/search.js"></script> 
+    <script src="../../../../../src/js/cards.js"></script> 
+    
+</body>
+</html>

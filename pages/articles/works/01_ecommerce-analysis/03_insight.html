@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Critical Business Insights - RFM Analysis</title>
+    <link rel="stylesheet" href="../../../../../src/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .content {
+            margin: 0 40px;
+        }
+        
+        .main-article {
+            padding: 40px;
+            margin: 20px 0;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .article-content {
+            line-height: 1.6;
+        }
+        
+        .article-content h2 {
+            margin: 40px 0 20px 0;     
+            padding: 0 0 10px 0;       
+            border-bottom: 2px solid #e0e0e0;
+            text-align: left;          
+            font-size: 1.8em;
+            
+        }
+        
+        .article-content h3 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .article-content p {
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: #fff;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        
+        .recommendation {
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #007bff;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+        }
+        
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .workflow {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .checklist {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        
+        .checklist-item {
+            margin-bottom: 10px;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        
+        .alert-red {
+            background-color: #ffeaea;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .insight-diamond {
+            background-color: #e8f4fd;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .insight-warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .insight-growth {
+            background-color: #e2f0e5;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .insight-risk {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .insight-value {
+            background-color: #e8f4fd;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .priority-high {
+            background-color: #ffeaea;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .priority-medium {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .priority-low {
+            background-color: #e2f0e5;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .financial-impact {
+            background-color: #e8f4fd;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .discovery {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                margin: 0 20px;
+            }
+            
+            .main-article {
+                padding: 20px;
+                margin: 10px 0;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header"></div>
+    
+    <div id="searchbar"></div>
+
+    <main class="main-content container">
+        <div class="content">
+            <article class="main-article">
+                <h1>Critical Business Insights - RFM Analysis</h1>
+                <div class="article-content">
+                    
+                    <h2>Key Findings</h2>
+                    
+                    <div class="discovery">
+                        <h3>The Hidden Problem in the Data</h3>
+                        <p>When analyzing 96,478 customers, I discovered that <strong>40% of the base is in a critical situation</strong> (At Risk + Lost). This represents a risk of $1.26M in future revenue.</p>
+                        
+                        <h3>The Opportunity</h3>
+                        <p>The "Champions" and "Loyal Customers" segments have high average ticket values ($32.79 and $31.50), but represent only 36% of the base. <strong>Retention strategies could increase revenue by up to 28%.</strong></p>
+                    </div>
+
+                    <h2>Critical Business Insights</h2>
+
+                    <div class="alert-red">
+                        <h3>1. RED ALERT: "At Risk" Customers are the biggest concern</h3>
+                        <ul>
+                            <li><strong>23.9% of the base (23,102 customers)</strong> are at risk of churn</li>
+                            <li>Represent <strong>~$740K in monetary value</strong> (the highest among all segments)</li>
+                            <li><strong>Action needed:</strong> Urgent reactivation campaigns (discounts, personalized emails, recovery)</li>
+                        </ul>
+                    </div>
+
+                    <div class="insight-diamond">
+                        <h3>2. Solid base of loyal customers, but underutilized</h3>
+                        <ul>
+                            <li><strong>Loyal Customers</strong> (19.9% - 19,187 customers) generate ~$604K</li>
+                            <li><strong>Champions</strong> (16.2% - 15,597 customers) generate ~$512K</li>
+                            <li><strong>Opportunity:</strong> These 36% of the base are responsible for nearly half the revenue. Loyalty programs/upselling can maximize this group</li>
+                        </ul>
+                    </div>
+
+                    <div class="insight-warning">
+                        <h3>3. "Lost" Customers still have recovery potential</h3>
+                        <ul>
+                            <li><strong>16.1% (15,490 customers)</strong> already lost, but generated ~$498K in the past</li>
+                            <li><strong>Strategy:</strong> Aggressive win-back campaigns with strong incentives</li>
+                        </ul>
+                    </div>
+
+                    <div class="insight-growth">
+                        <h3>4. "Promising" segment needs nurturing</h3>
+                        <ul>
+                            <li><strong>15.9% (15,312 customers)</strong> are new buyers with potential</li>
+                            <li>Average value per customer: <strong>$32.33</strong> (second best!)</li>
+                            <li><strong>Action:</strong> Onboarding journey to transform them into Champions</li>
+                        </ul>
+                    </div>
+
+                    <div class="insight-risk">
+                        <h3>5. Risk concentration</h3>
+                        <ul>
+                            <li><strong>40% of the base</strong> (At Risk + Lost) represents customers in critical situation</li>
+                            <li>If no action is taken, the company could lose <strong>~$1.26M in LTV</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="insight-value">
+                        <h3>6. Disparity in value per customer</h3>
+                        <ul>
+                            <li><strong>Champions:</strong> $32.79/customer (best monetization)</li>
+                            <li><strong>Promising:</strong> $32.33/customer (second best)</li>
+                            <li><strong>Lost:</strong> $32.15/customer</li>
+                            <li><strong>At Risk:</strong> $32.06/customer (high value, but inactive)</li>
+                            <li><strong>Loyal Customers:</strong> $31.50/customer</li>
+                            <li><strong>Others:</strong> $30.12/customer</li>
+                            <li><strong>Insight:</strong> High-value customers are concentrated in at-risk segments</li>
+                        </ul>
+                    </div>
+
+                    <h2>Data-Driven Strategic Recommendations</h2>
+
+                    <div class="priority-high">
+                        <h3>HIGH Priority (Immediate)</h3>
+                        <h4>1. Reactivate "At Risk":</h4>
+                        <ul>
+                            <li>20% discount coupon with limited time</li>
+                            <li>Personalized email: "We miss you!"</li>
+                            <li>Push notifications in app</li>
+                        </ul>
+                        
+                        <h4>2. Recover "Lost":</h4>
+                        <ul>
+                            <li>Satisfaction survey: "Why did you stop buying?"</li>
+                            <li>Aggressive return offer (free shipping + discount)</li>
+                        </ul>
+                    </div>
+
+                    <div class="priority-medium">
+                        <h3>MEDIUM Priority (30-60 days)</h3>
+                        <h4>3. Strengthen "Loyal Customers":</h4>
+                        <ul>
+                            <li>Points/cashback program</li>
+                            <li>Early access to new products</li>
+                            <li>Exclusive benefits</li>
+                        </ul>
+                        
+                        <h4>4. Accelerate "Promising":</h4>
+                        <ul>
+                            <li>Second purchase with welcome discount</li>
+                            <li>Personalized recommendations via email marketing</li>
+                        </ul>
+                    </div>
+
+                    <div class="priority-low">
+                        <h3>LOW Priority (Long term)</h3>
+                        <h4>5. Optimize "Others":</h4>
+                        <ul>
+                            <li>A/B test campaigns to understand behavior</li>
+                            <li>More granular segmentation</li>
+                        </ul>
+                    </div>
+
+                    <h2>Potential Financial Impact</h2>
+                    
+                    <div class="financial-impact">
+                        <p>If we successfully execute the above strategies:</p>
+                        <ul>
+                            <li><strong>Reactivate 20% of "At Risk"</strong> → +$148K in revenue</li>
+                            <li><strong>Recover 10% of "Lost"</strong> → +$50K in revenue</li>
+                            <li><strong>Convert 30% of "Promising" to Champions</strong> → +$148K in additional LTV</li>
+                        </ul>
+                        <p><strong>Total recovery potential: ~$346K</strong></p>
+                    </div>
+
+                    <h2>Questions to Deepen the Analysis</h2>
+                    
+                    <div class="recommendation">
+                        <p>During the analysis, I discovered that the dataset contains data that enables further valid questions. My analysis doesn't cover these, but they're worth investigating. I'll pursue these in a more robust project than this one.</p>
+                        <ul>
+                            <li><strong>Which acquisition channel brings more "At Risk"?</strong> (Social media? Google Ads?)</li>
+                            <li><strong>Is there seasonality in churn?</strong> (Do customers abandon in specific months?)</li>
+                            <li><strong>Product categories associated with each segment?</strong> (What categories do At Risk buy more from?)</li>
+                            <li><strong>Average time until churn?</strong> (How many days after the last purchase does a customer become "At Risk"?)</li>
+                            <li><strong>Performance by state/region?</strong> (Are there states with more churn?)</li>
+                            <li><strong>Impact of payment method?</strong> (Do customers who use installments have higher retention?)</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </article>
+        </div>
+
+        <div id="sidebar"></div>
+    </main>
+
+    <div id="cards-section"></div>
+
+    <div id="footer"></div>
+    
+    <script src="../../../../../src/js/main.js"></script> 
+    <script src="../../../../../src/js/search.js"></script> 
+    <script src="../../../../../src/js/cards.js"></script> 
+    
+</body>
+</html>
