@@ -1,22 +1,26 @@
 [
     {
-        "title": "Algebra Basics",
-        "description": "Start your journey with basic algebra concepts.",
-        "image": "pages/articles/math/img/algebra.jpg",
-        "link": "pages/articles/math/algebra.html"
+        "title": "Algebra Basics: Intervals",
+        "description": "Introduction to the Concept of Intervals.",
+        "image": "../../pages/articles/maths/article_v/img/img01.jpg",
+        "link": "../../pages/articles/maths/article_v/article_intervals.html"
     },
+
     {
-        "title": "Calculus Made Easy",
-        "description": "Understand calculus intuitively with real examples.",
-        "image": "pages/articles/math/img/calculus.jpg",
-        "link": "pages/articles/math/calculus.html"
+        "title": "About me",
+        "description": "Personal and professional journey introduction.",
+        "image": "../../pages/about_me/img/img01.jpg",
+        "link": "../../pages/about_me/about_me.html"
     },
+
     {
-        "title": "Programming with Python",
-        "description": "Discover the fundamentals of Python programming.",
-        "image": "pages/articles/cs/img/python.jpg",
-        "link": "pages/articles/cs/python.html"
-    }
+        "title": "Resume",
+        "description": "Professional resume and technical skills summary.",
+        "image": "../../pages/curriculum/img/img01.jpg",
+        "link": "../../pages/curriculum/curriculum.html"
+    },
+    
+    
     
 ]
 

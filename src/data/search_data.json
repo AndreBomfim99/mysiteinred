@@ -3,15 +3,24 @@
         "title": "About Me - André Bomfim",
         "link": "pages/articles/about/about_me.html",
         "description": "André, biography, trajectory, electronics, automation, SENAI, ETEC, FATEC, UNIVESP, civil construction, engineering, computer engineering, programming, data, data science, career, professional experience, portfolio, knowledge"
+    },
+
+    {
+        "title": "Intervals",
+        "link": "../../pages/articles/maths/article_v/article_intervals.html",
+        "description": "intervals, maths, math, mathematics"
+    },
+
+     {
+        "title": "Intervals",
+        "link": "../../pages/articles/maths/article_v/article_intervals.html",
+        "description": "Data Engineering, Python, SQL, AWS, Docker, Kubernetes, ETL, Apache Spark, Data Pipelines, Cloud Computing, PostgreSQL, Power BI, Tableau, Terraform, DevOps, CI/CD, Scrum, GitHub, Computer Engineering, UNIVESP, FGV, CompassUOL, Industrial Automation, SENAI, AWS Cloud Practitioner"
     }
-
-
-    /*{
-        "title": "Programming with Python",
-        "link": "pages/articles/cs/python.html",
-        "description": "Discover the fundamentals of Python programming."
-    },*/
    
 ]
+
+
+
+
 
 
