@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Site in Red</title>
+    <title>My Site in Red - Home</title>
     <link rel="stylesheet" href="../../src/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
 <body>
+
+    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="logo">
@@ -16,10 +17,10 @@
             </div>
             <nav class="nav">
                 <ul>
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#">About me</a></li>
-                    <li><a href="#">Articles</a></li>
-                    <li><a href="#">Curriculum</a></li>
+                    <li><a href="../../home.html" class="active">Home</a></li>
+                    <li><a href="/pages/about_me/about_me.html">About me</a></li>
+                    <li><a href="/pages/curriculum/curriculum.html">Resume</a></li>
+                    <li><a href="pages/article_menu/article_menu.html">Articles</a></li>
                 </ul>
             </nav>
             <div class="mobile-menu">
@@ -27,28 +28,31 @@
             </div>
         </div>
     </header>
-<div class="search-bar">
-    <div class="container search-bar-container">
-        <form action="#" method="get" class="search-form">
-            <input type="text" placeholder="Buscar artigos...">
-            <button type="submit"><i class="fas fa-search"></i></button>
-        </form>
-        <div class="social-icons">
-            <a href="https://www.linkedin.com/in/andre-bomfim/" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://x.com/andrebomfim999" target="_blank"><i class="fa-brands fa-square-x-twitter"></i></a>
-            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://github.com/AndreBomfim99" target="_blank"><i class="fab fa-github"></i></a>
+    
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="container search-bar-container">
+            <form action="pages/searchs/resultsearch.html" method="get" class="search-form">
+                <input type="text" name="q" placeholder="Search..." required>
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/andre-bomfim/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/andrebomfim999" target="_blank" aria-label="Twitter"><i class="fa-brands fa-square-x-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/AndreBomfim99" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
         </div>
     </div>
-</div>
+
+    <!-- Main Content -->
     <main class="main-content container">
         <div class="content">
             <article class="main-article">
-                <h2>Título do Artigo Principal</h2>
-                <p class="article-meta">Published on July 12, 2025 by André</p>
-               
+                <h2>About me</h2>
+                <p class="article-meta">Published on July 10, 2025 by André</p>
+                
                 <div class="article-content">
-                    
                     <h3>Γειά σου!</h3>
                     <h3>Hello!</h3>
 
@@ -189,70 +193,22 @@
                     <p>Actually, I’ve already started doing that, you can check it out on my GitHub. I’m writing the frontend with React and Node, and the backend with Spring Boot and MySQL. But the full implementation will come a bit later.</p>
                     <p>Thank you for reading all the way through. I hope this site is useful to you in some way.</p>
                 
-
-    
-
                 </div>
             </article>
         </div>
 
-        <aside class="sidebar">
-            <div class="sidebar-section">
-                <h3>Artigos Recentes</h3>
-                <ul class="article-list">
-                    <li><a href="#">Como criar um site responsivo</a></li>
-                    <li><a href="#">Tendências de design para 2023</a></li>
-                    <li><a href="#">Introdução ao CSS Grid</a></li>
-                    <li><a href="#">JavaScript moderno</a></li>
-                    <li><a href="#">Acessibilidade na web</a></li>
-                </ul>
-            </div>
-        </aside>
+            <div id="sidebar"></div>
     </main>
 
-    <section class="cards-section container">
-        <div class="cards-container">
-            <div class="card">
-                <div class="card-image-container">
-                    <img src="https://via.placeholder.com/400x300/990000/ffffff?text=Card+1" alt="Card 1">
-                    <h3 class="card-title-overlay">Título Card 1</h3>
-                </div>
-                <div class="card-content">
-                    <p>Resumo breve do conteúdo do card 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <a href="#" class="read-more">Leia mais</a>
-                </div>
-            </div>
+    
+    <div id="cards-section"></div>
 
-            <div class="card">
-                <div class="card-image-container">
-                    <img src="https://via.placeholder.com/400x300/990000/ffffff?text=Card+2" alt="Card 2">
-                    <h3 class="card-title-overlay">Título Card 2</h3>
-                </div>
-                <div class="card-content">
-                    <p>Resumo breve do conteúdo do card 2. Nullam in dui mauris. Vivamus hendrerit arcu sed erat.</p>
-                    <a href="#" class="read-more">Leia mais</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-image-container">
-                    <img src="https://via.placeholder.com/400x300/990000/ffffff?text=Card+3" alt="Card 3">
-                    <h3 class="card-title-overlay">Título Card 3</h3>
-                </div>
-                <div class="card-content">
-                    <p>Resumo breve do conteúdo do card 3. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
-                    <a href="#" class="read-more">Leia mais</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 My Site in Red. Todos os direitos reservados.</p>
-        </div>
-    </footer>
-
-    <script src="src/js/main.js"></script>
+   
+    <div id="footer"></div>
+    
+    <script src="/src/js/main.js"></script> 
+    <script src="/src/js/search.js"></script> 
+    <script src="/src/js/cards.js"></script> 
+    
 </body>
 </html>
